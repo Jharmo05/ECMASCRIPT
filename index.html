@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial ECMAScript</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@100..900&display=swap" rel="stylesheet" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Tutorial ECMAScript</h1>
+      <p>Explora la evolución de ECMAScript y aprende sus diferencias y nuevas características.</p>
+    </div>
+  </header>
+  <nav class="floating-nav">
+    <ul>
+      <li><a href="#que-es">¿Qué es ECMAScript?</a></li>
+      <li><a href="#versiones">Versiones</a></li>
+      <li><a href="#uso">¿Cómo utilizar?</a></li>
+      <li><a href="#diferencias">Diferencias</a></li>
+      <li><a href="#ejemplos">Ejemplos</a></li>
+
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <!-- Sección ¿Qué es ECMAScript? -->
+      <section id="que-es" class="card">
+        <h2>¿Qué es ECMAScript?</h2>
+        <p>ECMAScript no es un lenguaje de programación por sí mismo, sino un conjunto de normas que los lenguajes basados en él deben seguir. Fue creado por ECMA International, una organización que estandariza tecnologías para asegurar la compatibilidad entre diferentes productos y servicios. JavaScript es la implementación más conocida de ECMAScript, aunque también existen otros lenguajes que siguen su especificación, como JScript y TypeScript.
+
+            La especificación de ECMAScript cubre temas como la sintaxis, tipos de datos, estructuras de control, funciones, y objetos básicos como arrays, strings y objetos. De esta forma, ECMAScript proporciona un marco común que asegura que los lenguajes basados en él compartan comportamientos similares, lo que permite a los desarrolladores escribir código más confiable y portable.</p>
+      </section>
+
+      <!-- Sección Versiones de ECMAScript -->
+      <section id="versiones" class="card">
+        <h2>Versiones de ECMAScript</h2>
+
+        <h3>ES3 (1999)</h3>
+        <p>ES3 fue la versión que introdujo características clave como el manejo de excepciones con `try/catch` y el soporte para expresiones regulares.</p>
+        <pre><code>try {
+  throw new Error("¡Error!");
+} catch (e) {
+  console.log(e.message); // ¡Error!
+}</code></pre>
+
+        <h3>ES5 (2009)</h3>
+        <p>ES5 introdujo el modo estricto (`"use strict"`) para ayudar a evitar errores comunes en el código. También añadió métodos como `forEach()` y `JSON`.</p>
+        <pre><code>"use strict";
+var nombres = ['Ana', 'Luis', 'Pedro'];
+nombres.forEach(function(nombre) {
+  console.log(nombre); // 'Ana', 'Luis', 'Pedro'
+});</code></pre>
+
+        <h3>ES6 / ES2015</h3>
+        <p>ES6 es una de las actualizaciones más grandes y trajo características como `let`, `const`, clases, promesas, módulos, y funciones de flecha.</p>
+        <pre><code>const saludo = (nombre) => `Hola, ${nombre}`;
+console.log(saludo('Juan')); // 'Hola, Juan' </code></pre>
+
+        <h3>ES7 / ES2016</h3>
+        <p>ES7 introdujo dos características principales: el método `Array.prototype.includes()` y el operador exponencial (`**`).</p>
+        <pre><code>console.log([1, 2, 3].includes(2)); // true
+console.log(2 ** 3); // 8</code></pre>
+
+        <h3>ES8 / ES2017</h3>
+        <p>ES8 introdujo las funciones `async/await`, que hacen más fácil trabajar con promesas, y los métodos `Object.values()` y `Object.entries()`.</p>
+        <pre><code>async function obtenerDatos() {
+  const respuesta = await fetch('https://api.example.com');
+  const datos = await respuesta.json();
+  console.log(datos);
+}</code></pre>
+
+        <h3>ES9 / ES2018</h3>
+        <p>ES9 permitió el uso del operador spread en objetos y la adición de `Promise.finally` y mejoras en las expresiones regulares.</p>
+        <pre><code>const obj1 = { a: 1 };
+const obj2 = { ...obj1, b: 2 };
+console.log(obj2); // {a: 1, b: 2}</code></pre>
+
+        <h3>ES10 / ES2019</h3>
+        <p>ES10 agregó métodos como `Array.prototype.flat()`, `trimStart()`, y `trimEnd()`, y también el método `Object.fromEntries()`.</p>
+        <pre><code>const arr = [1, [2, [3]]];
+console.log(arr.flat(2)); // [1, 2, 3]
+
+const obj = { a: 1, b: 2 };
+console.log(Object.fromEntries(Object.entries(obj))); // {a: 1, b: 2}</code></pre>
+
+        <h3>ES11 / ES2020</h3>
+        <p>ES11 introdujo el encadenamiento opcional (`?.`), el operador de fusión nula (`??`), y el objeto global `globalThis`.</p>
+        <pre><code>const usuario = { perfil: { nombre: 'Luis' } };
+console.log(usuario.perfil?.nombre); // 'Luis'
+
+let valor = null ?? 'valor predeterminado';
+console.log(valor); // 'valor predeterminado'</code></pre>
+
+        <h3>ES12 / ES2021</h3>
+        <p>ES12 presentó asignación lógica (`||=`, `&&=`, `??=`), además de `String.replaceAll()`.</p>
+        <pre><code>let a = null;
+a ??= 5;
+console.log(a); // 5
+
+console.log('Hola, mundo'.replaceAll('o', '0')); // 'H0la, mund0'</code></pre>
+
+        <h3>ES13 / ES2022</h3>
+        <p>ES13 introdujo `top-level await`, la función `.at()` en arrays y un nuevo mecanismo para crear errores con `Error.cause`.</p>
+        <pre><code>const datos = await fetch('https://api.example.com').then(r => r.json());
+console.log(datos);
+
+const letras = ['a', 'b', 'c'];
+console.log(letras.at(-1)); // 'c'</code></pre>
+
+        <h3>ES14 / ES2023</h3>
+        <p>ES14 añadió métodos como `Array.prototype.toSorted()`, `toReversed()`, y `toSpliced()` para mejorar el manejo de arrays.</p>
+        <pre><code>const arr = [3, 1, 2];
+console.log(arr.toSorted()); // [1, 2, 3]
+
+console.log(arr.toReversed()); // [2, 1, 3]</code></pre>
+      </section>
+
+      <!-- Sección ¿Cómo utilizar ECMAScript? -->
+      <section id="uso" class="card">
+        <h2>¿Cómo utilizar ECMAScript?</h2>
+        <ul>
+            <li><strong>1. En navegadores:</strong> Escribe directamente tu código en archivos <code>.js</code>, ya que los navegadores modernos lo soportan de forma nativa.</li>
+            <li><strong>2. En servidores:</strong> Utiliza plataformas como <strong>Node.js</strong>, que también sigue la especificación ECMAScript.</li>
+            <li><strong>3. Compatibilidad:</strong> Para navegadores antiguos, puedes usar herramientas como <strong>Babel</strong> para convertir tu código a una versión más compatible.</li>
+            <li><strong>4. Con herramientas de desarrollo:</strong> Usa entornos como <strong>Webpack</strong> o <strong>Parcel</strong> para organizar y optimizar tu proyecto ECMAScript.</li>
+            <li><strong>5. Con módulos:</strong> ECMAScript permite dividir tu código en archivos reutilizables usando las palabras clave <code>import</code> y <code>export</code>.</li>
+            <li><strong>6. En frameworks:</strong> Al usar tecnologías como <strong>React</strong>, <strong>Vue.js</strong> o <strong>Angular</strong>, ya estarás aprovechando las características de ECMAScript.</li>
+        </ul>
+      </section>
+
+      <!-- Sección Diferencias entre versiones -->
+      <section id="diferencias" class="card">
+        <h2>Diferencias entre versiones</h2>
+        <p>Cada versión de ECMAScript trae mejoras y nuevas características. Por ejemplo:</p>
+        <ul>
+            <li><strong>ES3 (1999):</strong> Estableció las bases de JavaScript, añadiendo manejo de errores con <code>try/catch</code> y mejorando los objetos estándar como <code>Array</code> y <code>Date</code>.</li>
+            <li><strong>ES5 (2009):</strong> Introdujo el modo estricto, nuevos métodos para arrays como <code>forEach</code> y <code>map</code>, y funcionalidades mejoradas para objetos.</li>
+            <li><strong>ES6 (2015):</strong> Aportó cambios radicales, como las declaraciones <code>let</code> y <code>const</code>, funciones flecha, clases, promesas, y soporte para módulos.</li>
+            <li><strong>ES7 (2016):</strong> Añadió el operador de exponenciación (<code>**</code>) y el método <code>Array.prototype.includes()</code>.</li>
+            <li><strong>ES8 (2017):</strong> Introdujo <code>async/await</code> para manejar código asíncrono y nuevos métodos para objetos y cadenas.</li>
+            <li><strong>ES9 (2018):</strong> Mejoró la manipulación de objetos con el operador de propagación (<code>...</code>) y añadió soporte para iteración asíncrona.</li>
+            <li><strong>ES10 (2019):</strong> Añadió métodos como <code>Array.prototype.flat()</code> y <code>String.prototype.trimStart()</code>.</li>
+            <li><strong>ES11 (2020):</strong> Introdujo el encadenamiento opcional (<code>?.</code>), la fusión nula (<code>??</code>) y el tipo de datos <code>BigInt</code>.</li>
+        </ul>
+      </section>
+
+      <section id="ejemplos" class="card">
+        <h2>Ejemplos de Funcionalidades por Versión</h2>
+        
+        <h3>ECMAScript 3 (ES3)</h3>
+        <p>ES3 consolidó el manejo de errores con <code>try/catch</code>.</p>
+        <pre><code>// Manejo de errores con try/catch
+    try {
+      let x = undefinedVariable; // Error
+    } catch (error) {
+      console.error("Ha ocurrido un error:", error);
+    }
+        </code></pre>
+    
+        <h3>ECMAScript 5 (ES5)</h3>
+        <p>ES5 introdujo el "modo estricto" y métodos de arrays.</p>
+        <pre><code>// Modo estricto
+    "use strict"; // Habilita el modo estricto
+    let x = 10;
+    x = 20; // No hay problemas con la asignación
+    
+    // Métodos de arrays
+    const arr = [1, 2, 3, 4];
+    arr.forEach(num => console.log(num));  // 1, 2, 3, 4
+        </code></pre>
+    
+        <h3>ECMAScript 6 (ES6)</h3>
+        <p>ES6 añadió <code>let</code>, <code>const</code>, clases, y promesas.</p>
+        <pre><code>// Declaración de variables con let y const
+    let x = 10;
+    const y = 20;  // No se puede cambiar el valor de "y"
+    
+    // Funciones flecha
+    const sum = (a, b) => a + b;
+    console.log(sum(2, 3));  // 5
+    
+    // Clases
+    class Person {
+      constructor(name) {
+        this.name = name;
+      }
+      greet() {
+        console.log(`Hola, mi nombre es ${this.name}`);
+      }
+    }
+    const person = new Person("Juan");
+    person.greet();  // Hola, mi nombre es Juan
+    
+    // Promesas
+    let promise = new Promise((resolve, reject) => {
+      let success = true;
+      if(success) {
+        resolve("Operación exitosa");
+      } else {
+        reject("Error");
+      }
+    });
+    promise.then(response => console.log(response)).catch(error => console.error(error));
+        </code></pre>
+    
+        <h3>ECMAScript 7 (ES7)</h3>
+        <p>ES7 añadió el operador de exponenciación y el método <code>includes()</code> para arrays.</p>
+        <pre><code>// Operador de exponenciación
+    let result = 2 ** 3;  // 8
+    
+    // Método includes()
+    const arr = [1, 2, 3, 4];
+    console.log(arr.includes(3));  // true
+    console.log(arr.includes(5));  // false
+        </code></pre>
+    
+        <h3>ECMAScript 8 (ES8)</h3>
+        <p>ES8 introdujo <code>async/await</code> y métodos adicionales para objetos y cadenas.</p>
+        <pre><code>// Async/Await
+    async function fetchData() {
+      let response = await fetch('https://api.example.com');
+      let data = await response.json();
+      console.log(data);
+    }
+    fetchData();
+    
+    // Nuevos métodos para objetos
+    const obj = { name: 'John', age: 30 };
+    console.log(Object.entries(obj));  // [["name", "John"], ["age", 30]]
+    
+    // Nuevos métodos para cadenas
+    let str = "  Hola Mundo  ";
+    console.log(str.trimStart());  // "Hola Mundo  "
+    console.log(str.trimEnd());    // "  Hola Mundo"
+        </code></pre>
+    
+        <h3>ECMAScript 9 (ES9)</h3>
+        <p>ES9 añadió la propagación de propiedades en objetos y la iteración asíncrona.</p>
+        <pre><code>// Propagación de propiedades en objetos
+    const obj1 = { a: 1, b: 2 };
+    const obj2 = { ...obj1, c: 3 }; // Copia y agrega una nueva propiedad
+    console.log(obj2);  // {a: 1, b: 2, c: 3}
+    
+    // Iteración asíncrona
+    async function* generateAsync() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    
+    (async () => {
+      for await (let value of generateAsync()) {
+        console.log(value);  // 1, 2, 3
+      }
+    })();
+        </code></pre>
+    
+        <h3>ECMAScript 10 (ES10)</h3>
+        <p>ES10 introdujo métodos <code>flat()</code> y <code>flatMap()</code> para arrays, y nuevos métodos para cadenas.</p>
+        <pre><code>// Métodos flat y flatMap para arrays
+    const arr = [1, [2, 3], [4, 5]];
+    console.log(arr.flat());  // [1, 2, 3, 4, 5]
+    
+    const arr2 = [1, 2, 3];
+    console.log(arr2.flatMap(x => [x, x * 2]));  // [1, 2, 2, 4, 3, 6]
+    
+    // Métodos de cadenas
+    let str = "  Hola Mundo  ";
+    console.log(str.trimStart());  // "Hola Mundo  "
+    console.log(str.trimEnd());    // "  Hola Mundo"
+        </code></pre>
+    
+        <h3>ECMAScript 11 (ES11)</h3>
+        <p>ES11 introdujo el encadenamiento opcional, la fusión nula y BigInt.</p>
+        <pre><code>// Encadenamiento opcional
+    const user = { profile: { name: "Alice" } };
+    console.log(user.profile?.name);  // "Alice"
+    console.log(user.profile?.age);   // undefined
+    
+    // Fusión nula (Nullish Coalescing)
+    let foo = null;
+    let bar = "Valor predeterminado";
+    console.log(foo ?? bar);  // "Valor predeterminado"
+    
+    // BigInt
+    const bigNumber = 1234567890123456789012345678901234567890n;
+    console.log(bigNumber);  // 1234567890123456789012345678901234567890n
+        </code></pre>
+    </section>
+    
+    </div>
+  </main>
+
+  <footer>
+    <p>Creado por Jhon Sebastian Ardila Moreno - Mikel David Gomez Rodriguez</p>
+  </footer>
+</body>
+</html>
